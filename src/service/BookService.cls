@@ -13,6 +13,18 @@ USING Progress.Lang.*.
 
 BLOCK-LEVEL ON ERROR UNDO, THROW.
 
-CLASS src.service.BookService: 
-    
+CLASS AddBook:
+    /* Business logic for adding a book */
+END CLASS.
+
+CLASS ModifyBook:
+    /* Business logic for modifying a book */
+END CLASS.
+
+CLASS LendBook:
+    /* Business logic for lending out a book */
+END CLASS.
+
+CLASS ReportLentBooks:
+    /* Business logic for generating a report of all books lent out */
 END CLASS.
