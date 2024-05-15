@@ -1,0 +1,13 @@
+{
+    "version": "1.4",
+    "lastModified": "Mon May 13 16:01:52 EEST 2024",
+    "services": [{
+        "name": "add",
+        "address": "\/web\/pdo\/add",
+        "useRequest": true,
+        "resources": [{
+            "path": "null",
+            "autoSave": true
+        }]
+    }]
+}

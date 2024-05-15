@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<module-content version="12.8">
+    <module id="0d8534b8-2a05-49c8-b567-3f18f207be91" name="back-end">
+        <resource path="PASOEContent\WEB-INF\openedge\AppServer" publish="true"/>
+    </module>
+</module-content>

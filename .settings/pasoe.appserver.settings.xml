@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <module-content version="12.8">
     <module id="20e41d59-69a0-4fac-a5af-7deab2398913" name="back-end">
-        <resource path="AppServer" publish="true"/>
+        <resource path="/" publish="true"/>
     </module>
 </module-content>

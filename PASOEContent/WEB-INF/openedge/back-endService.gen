@@ -1,0 +1,237 @@
+{
+    "services": {
+        "back-endService": {
+            "version": "1.0.0",
+            "operations": {
+                "\/": {
+                    "GET": {
+                        "contentType": "application\/json",
+                        "statusCode": 200,
+                        "file": "$CATALINA_BASE\/webapps\/$oepas-webapp\/static\/back-endService.json"
+                    }
+                },
+                "\/Client": {
+                    "POST": {
+                        "contentType": "application\/json",
+                        "options": {
+                            "writeBI": true
+                        },
+                        "entity": {
+                            "name": "Client",
+                            "function": "CreateClient",
+                            "arg": [{
+                                "ablName": "dsclients",
+                                "ablType": "DATASET",
+                                "ioMode": "INPUT-OUTPUT",
+                                "msgElem": {
+                                    "type": "BODY",
+                                    "name": null
+                                }
+                            }]
+                        }
+                    },
+                    "PUT": {
+                        "contentType": "application\/json",
+                        "options": {
+                            "writeBI": true
+                        },
+                        "entity": {
+                            "name": "Client",
+                            "function": "UpdateClient",
+                            "arg": [{
+                                "ablName": "dsclients",
+                                "ablType": "DATASET",
+                                "ioMode": "INPUT-OUTPUT",
+                                "msgElem": {
+                                    "type": "BODY",
+                                    "name": null
+                                }
+                            }]
+                        }
+                    },
+                    "DELETE": {
+                        "contentType": "application\/json",
+                        "options": {
+                            "writeBI": true
+                        },
+                        "entity": {
+                            "name": "Client",
+                            "function": "DeleteClient",
+                            "arg": [{
+                                "ablName": "dsclients",
+                                "ablType": "DATASET",
+                                "ioMode": "INPUT-OUTPUT",
+                                "msgElem": {
+                                    "type": "BODY",
+                                    "name": null
+                                }
+                            }]
+                        }
+                    },
+                    "GET": {
+                        "contentType": "application\/json",
+                        "options": {
+                            "writeBI": true
+                        },
+                        "entity": {
+                            "name": "Client",
+                            "function": "ReadClient",
+                            "arg": [
+                                {
+                                    "ablName": "filter",
+                                    "ablType": "CHARACTER",
+                                    "ioMode": "INPUT",
+                                    "msgElem": {
+                                        "type": "QUERY",
+                                        "name": "filter"
+                                    }
+                                },
+                                {
+                                    "ablName": "dsclients",
+                                    "ablType": "DATASET",
+                                    "ioMode": "OUTPUT",
+                                    "msgElem": {
+                                        "type": "BODY",
+                                        "name": null
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                },
+                "\/Book": {
+                    "DELETE": {
+                        "contentType": "application\/json",
+                        "options": {
+                            "writeBI": true
+                        },
+                        "entity": {
+                            "name": "Book",
+                            "function": "DeleteBook",
+                            "arg": [{
+                                "ablName": "dsbooks",
+                                "ablType": "DATASET",
+                                "ioMode": "INPUT-OUTPUT",
+                                "msgElem": {
+                                    "type": "BODY",
+                                    "name": null
+                                }
+                            }]
+                        }
+                    },
+                    "POST": {
+                        "contentType": "application\/json",
+                        "options": {
+                            "writeBI": true
+                        },
+                        "entity": {
+                            "name": "Book",
+                            "function": "CreateBook",
+                            "arg": [{
+                                "ablName": "dsbooks",
+                                "ablType": "DATASET",
+                                "ioMode": "INPUT-OUTPUT",
+                                "msgElem": {
+                                    "type": "BODY",
+                                    "name": null
+                                }
+                            }]
+                        }
+                    },
+                    "GET": {
+                        "contentType": "application\/json",
+                        "options": {
+                            "writeBI": true
+                        },
+                        "entity": {
+                            "name": "Book",
+                            "function": "ReadBook",
+                            "arg": [
+                                {
+                                    "ablName": "filter",
+                                    "ablType": "CHARACTER",
+                                    "ioMode": "INPUT",
+                                    "msgElem": {
+                                        "type": "QUERY",
+                                        "name": "filter"
+                                    }
+                                },
+                                {
+                                    "ablName": "dsbooks",
+                                    "ablType": "DATASET",
+                                    "ioMode": "OUTPUT",
+                                    "msgElem": {
+                                        "type": "BODY",
+                                        "name": null
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "PUT": {
+                        "contentType": "application\/json",
+                        "options": {
+                            "writeBI": true
+                        },
+                        "entity": {
+                            "name": "Book",
+                            "function": "UpdateBook",
+                            "arg": [{
+                                "ablName": "dsbooks",
+                                "ablType": "DATASET",
+                                "ioMode": "INPUT-OUTPUT",
+                                "msgElem": {
+                                    "type": "BODY",
+                                    "name": null
+                                }
+                            }]
+                        }
+                    }
+                }
+            },
+            "schemas": {
+                "dsclients": {
+                    "ttclients": {
+                        "trackChanges": true,
+                        "indexes": {},
+                        "fields": [
+                            {
+                                "name": "Name",
+                                "ablType": "CHARACTER",
+                                "extent": null
+                            },
+                            {
+                                "name": "Email",
+                                "ablType": "CHARACTER",
+                                "extent": null
+                            }
+                        ]
+                    }
+                },
+                "dsbooks": {
+                    "ttbooks": {
+                        "trackChanges": true,
+                        "indexes": {},
+                        "fields": [
+                            {
+                                "name": "BookTitle",
+                                "ablType": "CHARACTER",
+                                "extent": null
+                            },
+                            {
+                                "name": "Authorr",
+                                "ablType": "CHARACTER",
+                                "extent": null
+                            },
+                            {
+                                "name": "Genre",
+                                "ablType": "CHARACTER",
+                                "extent": null
+                            }
+                        ]
+                    }
+                }
+            }
+        }
+    }
+}
