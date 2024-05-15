@@ -3,13 +3,13 @@
     File        : BookLoan
     Syntax      : 
     Author(s)   : rainr
-    Created     : Wed May 15 17:37:42 EEST 2024
+    Created     : Wed May 15 19:31:29 EEST 2024
     Notes       : 
   ----------------------------------------------------------------------*/
   
 @program FILE(name="BookLoan.cls", module="AppServer").
 @openapi.openedge.export FILE(type="REST", executionMode="singleton", useReturnValue="false", writeDataSetBeforeImage="false").
-@progress.service.resource FILE(name="BookLoan", URI="/BookLoan", schemaName="dsBookLoans", schemaFile="back-end/AppServer/bookloan.i").
+@progress.service.resource FILE(name="BookLoan", URI="/bookLoan", schemaName="dsBookLoans", schemaFile="back-end/AppServer/bookloan.i").
 
 USING Progress.Lang.*.
 USING OpenEdge.BusinessLogic.BusinessEntity.
@@ -102,6 +102,28 @@ CLASS BookLoan INHERITS BusinessEntity:
     
         SUPER:DeleteData(DATASET dsBookLoans BY-REFERENCE).
     END METHOD.
-     
     
+    DEFINE TEMP-TABLE ttClientLoans NO-UNDO
+    FIELD Deadline AS DATE
+    FIELD BookTitle AS CHARACTER
+    FIELD BookAuthor AS CHARACTER
+    FIELD BookGenre AS CHARACTER.
+
+    
+    METHOD PUBLIC VOID ReadAllRecordsForClient(
+        INPUT clientID AS INTEGER, 
+        OUTPUT DATASET dsLentBooks):
+        
+        FOR EACH BookLoans NO-LOCK WHERE BookLoans.clientId = clientID:
+            FIND Books WHERE Books.BookId = BookLoans.BookId NO-LOCK NO-ERROR:
+            IF AVAILABLE Books THEN DO:
+                CREATE ttClientLoans.
+                ASSIGN
+                    ttClientLoans.Deadline = BookLoans.Deadline
+                    ttClientLoans.BookTitle = Books.BookTitle
+                    ttClientLoans.BookAuthor = Books.Author
+                    ttClientLoans.BookGenre = Books.Genre.
+            END.
+        END.
+    END METHOD.       
 END CLASS.

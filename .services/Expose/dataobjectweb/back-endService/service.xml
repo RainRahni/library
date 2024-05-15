@@ -1,1 +1,1 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><oe_mobile><service><name>back-endService</name><resources><path>AppServer/Client.cls</path><path>AppServer/Book.cls</path></resources></service></oe_mobile>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><oe_mobile><service><name>back-endService</name><resources><path>AppServer/Book.cls</path><path>AppServer/Client.cls</path></resources></service></oe_mobile>

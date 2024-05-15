@@ -1,24 +1,158 @@
 {
     "version": "1.4",
-    "lastModified": "Wed May 15 16:02:29 EEST 2024",
+    "lastModified": "Wed May 15 19:00:03 EEST 2024",
     "services": [{
         "name": "back-endService",
         "address": "\/web\/pdo\/back-endService",
         "useRequest": true,
         "resources": [
             {
-                "name": "Client",
-                "path": "\/Client",
+                "name": "Book",
+                "path": "\/book",
                 "autoSave": true,
                 "schema": {
                     "type": "object",
                     "additionalProperties": false,
                     "properties": {
-                        "dsclients": {
+                        "dsBooks": {
                             "type": "object",
                             "additionalProperties": false,
                             "properties": {
-                                "ttclients": {
+                                "ttBooks": {
+                                    "type": "array",
+                                    "items": {
+                                        "additionalProperties": false,
+                                        "properties": {
+                                            "_id": {
+                                                "type": "string",
+                                                "semanticType": "Internal"
+                                            },
+                                            "_errorString": {
+                                                "type": "string",
+                                                "semanticType": "Internal"
+                                            },
+                                            "BookTitle": {
+                                                "type": "string",
+                                                "ablType": "CHARACTER",
+                                                "default": "",
+                                                "title": "BookTitle",
+                                                "required": true
+                                            },
+                                            "Author": {
+                                                "type": "string",
+                                                "ablType": "CHARACTER",
+                                                "default": "",
+                                                "title": "Author",
+                                                "required": true
+                                            },
+                                            "Genre": {
+                                                "type": "string",
+                                                "ablType": "CHARACTER",
+                                                "default": "",
+                                                "title": "Genre",
+                                                "required": true
+                                            },
+                                            "BookLoanId": {
+                                                "type": "integer",
+                                                "ablType": "INT64",
+                                                "default": 1,
+                                                "title": "BookLoanId",
+                                                "required": true
+                                            },
+                                            "BookStatus": {
+                                                "type": "string",
+                                                "ablType": "CHARACTER",
+                                                "default": "",
+                                                "title": "BookStatus",
+                                                "required": true
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "operations": [
+                    {
+                        "path": "",
+                        "useBeforeImage": true,
+                        "type": "delete",
+                        "verb": "delete",
+                        "params": [
+                            {
+                                "name": "dsBooks",
+                                "type": "REQUEST_BODY"
+                            },
+                            {
+                                "name": "dsBooks",
+                                "type": "RESPONSE_BODY"
+                            }
+                        ]
+                    },
+                    {
+                        "path": "",
+                        "useBeforeImage": true,
+                        "type": "create",
+                        "verb": "post",
+                        "params": [
+                            {
+                                "name": "dsBooks",
+                                "type": "REQUEST_BODY"
+                            },
+                            {
+                                "name": "dsBooks",
+                                "type": "RESPONSE_BODY"
+                            }
+                        ]
+                    },
+                    {
+                        "path": "?filter={filter}",
+                        "useBeforeImage": true,
+                        "type": "read",
+                        "verb": "get",
+                        "params": [
+                            {
+                                "name": "filter",
+                                "type": "QUERY"
+                            },
+                            {
+                                "name": "dsBooks",
+                                "type": "RESPONSE_BODY"
+                            }
+                        ]
+                    },
+                    {
+                        "path": "",
+                        "useBeforeImage": true,
+                        "type": "update",
+                        "verb": "put",
+                        "params": [
+                            {
+                                "name": "dsBooks",
+                                "type": "REQUEST_BODY"
+                            },
+                            {
+                                "name": "dsBooks",
+                                "type": "RESPONSE_BODY"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "name": "Client",
+                "path": "\/client",
+                "autoSave": true,
+                "schema": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "dsClients": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                                "ttClients": {
                                     "type": "array",
                                     "items": {
                                         "additionalProperties": false,
@@ -42,7 +176,15 @@
                                                 "type": "string",
                                                 "ablType": "CHARACTER",
                                                 "default": "",
-                                                "title": "Email"
+                                                "title": "Email",
+                                                "required": true
+                                            },
+                                            "BookLoanId": {
+                                                "type": "integer",
+                                                "ablType": "INT64",
+                                                "default": 1,
+                                                "title": "BookLoanId",
+                                                "required": true
                                             }
                                         }
                                     }
@@ -59,11 +201,11 @@
                         "verb": "post",
                         "params": [
                             {
-                                "name": "dsclients",
+                                "name": "dsClients",
                                 "type": "REQUEST_BODY"
                             },
                             {
-                                "name": "dsclients",
+                                "name": "dsClients",
                                 "type": "RESPONSE_BODY"
                             }
                         ]
@@ -75,11 +217,11 @@
                         "verb": "put",
                         "params": [
                             {
-                                "name": "dsclients",
+                                "name": "dsClients",
                                 "type": "REQUEST_BODY"
                             },
                             {
-                                "name": "dsclients",
+                                "name": "dsClients",
                                 "type": "RESPONSE_BODY"
                             }
                         ]
@@ -91,11 +233,11 @@
                         "verb": "delete",
                         "params": [
                             {
-                                "name": "dsclients",
+                                "name": "dsClients",
                                 "type": "REQUEST_BODY"
                             },
                             {
-                                "name": "dsclients",
+                                "name": "dsClients",
                                 "type": "RESPONSE_BODY"
                             }
                         ]
@@ -111,126 +253,7 @@
                                 "type": "QUERY"
                             },
                             {
-                                "name": "dsclients",
-                                "type": "RESPONSE_BODY"
-                            }
-                        ]
-                    }
-                ]
-            },
-            {
-                "name": "Book",
-                "path": "\/Book",
-                "autoSave": true,
-                "schema": {
-                    "type": "object",
-                    "additionalProperties": false,
-                    "properties": {
-                        "dsbooks": {
-                            "type": "object",
-                            "additionalProperties": false,
-                            "properties": {
-                                "ttbooks": {
-                                    "type": "array",
-                                    "items": {
-                                        "additionalProperties": false,
-                                        "properties": {
-                                            "_id": {
-                                                "type": "string",
-                                                "semanticType": "Internal"
-                                            },
-                                            "_errorString": {
-                                                "type": "string",
-                                                "semanticType": "Internal"
-                                            },
-                                            "BookTitle": {
-                                                "type": "string",
-                                                "ablType": "CHARACTER",
-                                                "default": "",
-                                                "title": "BookTitle",
-                                                "required": true
-                                            },
-                                            "Authorr": {
-                                                "type": "string",
-                                                "ablType": "CHARACTER",
-                                                "default": "",
-                                                "title": "Authorr"
-                                            },
-                                            "Genre": {
-                                                "type": "string",
-                                                "ablType": "CHARACTER",
-                                                "default": "",
-                                                "title": "Genre",
-                                                "required": true
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                },
-                "operations": [
-                    {
-                        "path": "",
-                        "useBeforeImage": true,
-                        "type": "delete",
-                        "verb": "delete",
-                        "params": [
-                            {
-                                "name": "dsbooks",
-                                "type": "REQUEST_BODY"
-                            },
-                            {
-                                "name": "dsbooks",
-                                "type": "RESPONSE_BODY"
-                            }
-                        ]
-                    },
-                    {
-                        "path": "",
-                        "useBeforeImage": true,
-                        "type": "create",
-                        "verb": "post",
-                        "params": [
-                            {
-                                "name": "dsbooks",
-                                "type": "REQUEST_BODY"
-                            },
-                            {
-                                "name": "dsbooks",
-                                "type": "RESPONSE_BODY"
-                            }
-                        ]
-                    },
-                    {
-                        "path": "?filter={filter}",
-                        "useBeforeImage": true,
-                        "type": "read",
-                        "verb": "get",
-                        "params": [
-                            {
-                                "name": "filter",
-                                "type": "QUERY"
-                            },
-                            {
-                                "name": "dsbooks",
-                                "type": "RESPONSE_BODY"
-                            }
-                        ]
-                    },
-                    {
-                        "path": "",
-                        "useBeforeImage": true,
-                        "type": "update",
-                        "verb": "put",
-                        "params": [
-                            {
-                                "name": "dsbooks",
-                                "type": "REQUEST_BODY"
-                            },
-                            {
-                                "name": "dsbooks",
+                                "name": "dsClients",
                                 "type": "RESPONSE_BODY"
                             }
                         ]

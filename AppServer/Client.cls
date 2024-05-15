@@ -3,13 +3,13 @@
     File        : Client
     Syntax      : 
     Author(s)   : rainr
-    Created     : Wed May 15 17:37:15 EEST 2024
+    Created     : Wed May 15 18:58:12 EEST 2024
     Notes       : 
   ----------------------------------------------------------------------*/
   
 @program FILE(name="Client.cls", module="AppServer").
 @openapi.openedge.export FILE(type="REST", executionMode="singleton", useReturnValue="false", writeDataSetBeforeImage="false").
-@progress.service.resource FILE(name="Client", URI="/Client", schemaName="dsClients", schemaFile="back-end/AppServer/client.i").
+@progress.service.resource FILE(name="Client", URI="/client", schemaName="dsClients", schemaFile="back-end/AppServer/client.i").
 
 USING Progress.Lang.*.
 USING OpenEdge.BusinessLogic.BusinessEntity.
