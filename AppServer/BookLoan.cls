@@ -125,5 +125,32 @@ CLASS BookLoan INHERITS BusinessEntity:
                     ttClientLoans.BookGenre = Books.Genre.
             END.
         END.
-    END METHOD.       
+        BUFFER-COPY ttClientLoans TO dsLentBooks.
+    END METHOD. 
+    
+    DEFINE TEMP-TABLE ttAllLoans NO-UNDO
+    FIELD ClientName AS CHARACTER
+    FIELD Deadline AS DATE
+    FIELD BookTitle AS CHARACTER
+    FIELD BookAuthor AS CHARACTER
+    FIELD BookGenre AS CHARACTER.
+    
+    METHOD PUBLIC VOID ReadAllRecords(OUTPUT DATASET dsAllLoans):
+        FOR EACH BookLoans NO-LOCK:
+            FIND Clients WHERE Clients.clientId = BookLoans.ClientId NO-LOCK NO-ERROR.
+            FIND Books WHERE Books.BookId = BookLoans.BookId NO-LOCK NO-ERROR.
+            IF AVAILABLE Clients AND Books THEN DO:
+                CREATE ttAllLoans.
+                ASSIGN 
+                    ttAllLoans.ClientName = Clients.Name
+                    ttAllLoans.Deadline = BookLoans.Deadline
+                    ttAllLoans.BookTitle = Books.BookTitle
+                    ttAllLoans.BookAuthor = Books.Author
+                    ttAllLoans.BookGenre = Books.Genre.
+                    
+            END.
+        END.
+        BUFFER-COPY ttAllLoans TO dsAllLoans.
+    END METHOD.
+            
 END CLASS.
