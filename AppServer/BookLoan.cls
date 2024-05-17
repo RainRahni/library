@@ -104,10 +104,12 @@ CLASS BookLoan INHERITS BusinessEntity:
     END METHOD.
     
     DEFINE TEMP-TABLE ttClientLoans NO-UNDO
-    FIELD Deadline AS DATE
-    FIELD BookTitle AS CHARACTER
-    FIELD BookAuthor AS CHARACTER
-    FIELD BookGenre AS CHARACTER.
+     FIELD Deadline AS DATE
+     FIELD BookTitle AS CHARACTER
+     FIELD BookAuthor AS CHARACTER
+     FIELD BookGenre AS CHARACTER.
+
+    DEFINE DATASET dsLentBooks FOR ttClientLoans.
 
     
     METHOD PUBLIC VOID ReadAllRecordsForClient(
@@ -115,7 +117,7 @@ CLASS BookLoan INHERITS BusinessEntity:
         OUTPUT DATASET dsLentBooks):
         
         FOR EACH BookLoans NO-LOCK WHERE BookLoans.clientId = clientID:
-            FIND Books WHERE Books.BookId = BookLoans.BookId NO-LOCK NO-ERROR:
+            FIND Books WHERE Books.Id = BookLoans.BookId NO-LOCK NO-ERROR.
             IF AVAILABLE Books THEN DO:
                 CREATE ttClientLoans.
                 ASSIGN
@@ -135,10 +137,13 @@ CLASS BookLoan INHERITS BusinessEntity:
     FIELD BookAuthor AS CHARACTER
     FIELD BookGenre AS CHARACTER.
     
+    DEFINE DATASET dsAllLoans FOR ttAllLoans.
+   
+    
     METHOD PUBLIC VOID ReadAllRecords(OUTPUT DATASET dsAllLoans):
         FOR EACH BookLoans NO-LOCK:
-            FIND Clients WHERE Clients.clientId = BookLoans.ClientId NO-LOCK NO-ERROR.
-            FIND Books WHERE Books.BookId = BookLoans.BookId NO-LOCK NO-ERROR.
+            FIND Clients WHERE Clients.Id = BookLoans.ClientId NO-LOCK NO-ERROR.
+            FIND Books WHERE Books.Id = BookLoans.BookId NO-LOCK NO-ERROR.
             IF AVAILABLE Clients AND Books THEN DO:
                 CREATE ttAllLoans.
                 ASSIGN 
